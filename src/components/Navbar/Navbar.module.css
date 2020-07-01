@@ -1,0 +1,14 @@
+
+.nav {
+    grid-area: n;
+    background-color: #05634b;
+    margin-right: 5px;
+}
+
+.nav div {
+    margin-bottom: 3px;
+}
+
+.item {
+    color: white;
+}
