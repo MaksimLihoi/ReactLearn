@@ -3,12 +3,18 @@
     grid-area: n;
     background-color: #05634b;
     margin-right: 5px;
+    padding: 20px;
 }
 
 .nav div {
     margin-bottom: 3px;
 }
 
-.item {
+.item a{
     color: white;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: gold;
 }
