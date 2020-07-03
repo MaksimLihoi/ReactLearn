@@ -1,17 +1,14 @@
 import React from "react";
 import classes from './Profile.module.css';
 import MyPosts from "./MyPosts/MyPosts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
-    return (<div className={classes.content}>
-        <div>
-            <img className={classes.img} src='https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg'/>
-        </div>
-        <div>
-            ava + description
-        </div>
-        <MyPosts/>
-    </div>);
+const Profile = (props) => {
+    return (
+        <div className={classes.content}>
+            <ProfileInfo/>
+            <MyPosts/>
+        </div>);
 }
 
 export default Profile;
