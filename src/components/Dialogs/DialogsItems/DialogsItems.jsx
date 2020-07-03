@@ -7,7 +7,7 @@ import {NavLink} from "react-router-dom";
 const DialogItems = (props) => {
 
     let dialogsElements = props.dialogsData
-        .map((dialogElement) => <Dialog name={dialogElement.name} id={dialogElement.id}/>);
+        .map((dialogElement) => <Dialog name={dialogElement.name} id={dialogElement.id} imgSrc={dialogElement.imageSrc}/>);
 
     return (
         <div className={classes.dialogItems}>

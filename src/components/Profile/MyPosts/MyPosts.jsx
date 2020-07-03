@@ -7,7 +7,7 @@ const MyPosts = (props) => {
 
     let postsElements = props.postData
         .map((postElement) =>
-            <Post message={postElement.message} likeCount={postElement.likeCount} id={postElement.id}/>);
+            <Post message={postElement.message} likeCount={postElement.likeCount} id={postElement.id} imageSrc={postElement.imageSrc}/>);
 
     return (<div className={classes.postsBlock}>
         My posts
