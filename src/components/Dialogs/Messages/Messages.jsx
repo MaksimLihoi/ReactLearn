@@ -1,6 +1,7 @@
 import React from "react";
 import Message from "./Message/Message";
 import classes from "./Messages.module.css";
+import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../redux/state";
 
 const Messages = (props) => {
 
@@ -11,14 +12,25 @@ const Messages = (props) => {
 
     let addNewMessage = () => {
         let text = newMessageRef.current.value;
-        alert(text);
-    }
+        let action = addMessageActionCreator();
+        props.dispatch(action);
+    };
+
+    let onChangeMessage = () => {
+        let text = newMessageRef.current.value;
+        let action = updateNewMessageActionCreator(text);
+
+        props.dispatch(action);
+    };
 
     return (
         <div className={classes.messages}>
             {messagesElements}
             <div className={classes.textarea}>
-                <textarea ref={newMessageRef}></textarea>
+                <textarea onChange={onChangeMessage}
+                          ref={newMessageRef}
+                          value={props.newMessageText}
+                          placeholder="Enter your text here..."></textarea>
                 <button onClick={addNewMessage}>Send</button>
             </div>
         </div>

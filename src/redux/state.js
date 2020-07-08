@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
 
 let store = {
     _state: {
@@ -31,6 +33,7 @@ let store = {
                 {id: 2, text: "One more text"},
                 {id: 3, text: "The last one"},
             ],
+            newMessageText: ""
         },
 
         profilePage: {
@@ -48,7 +51,7 @@ let store = {
                     imageSrc: "https://zefirka.net/wp-content/uploads/2018/05/strannye-foto-na-kotoryx-chto-to-ne-tak-1.jpg"
                 },
             ],
-            newPostText: "some text",
+            newPostText: "",
         },
 
         sideBar: {
@@ -109,7 +112,9 @@ let store = {
                 imageSrc: "https://coubsecure-s.akamaihd.net/get/b29/p/coub/simple/cw_timeline_pic/ff250951a35/edc3593d938e1668ef229/med_1453411023_image.jpg",
             };
             if (newPost.message === "") {
-                alert("Сообщение не должно быть пустым!")
+
+                alert("Сообщение не должно быть пустым!");
+
             } else {
                 this._state.profilePage.postData.push(newPost);
                 this._state.profilePage.newPostText = '';
@@ -119,6 +124,28 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._renderApp(this._state);
+            console.log(this._state.profilePage.newPostText);
+        } else if (action.type === ADD_MESSAGE) {
+            let newMessage = {
+                id: this._state.dialogsPage.messageData.length + 1,
+                text: this._state.dialogsPage.newMessageText,
+            };
+
+            if (newMessage.text === "") {
+
+                alert("Сообщение не должно быть пустым!");
+
+            } else {
+                this._state.dialogsPage.messageData.push(newMessage);
+                this._state.dialogsPage.newMessageText = '';
+                this._renderApp(this._state);
+            }
+
+
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.newText;
+            this._renderApp(this._state);
+            console.log(this._state.dialogsPage.newMessageText);
         }
     },
 
@@ -135,6 +162,18 @@ export const updateNewPostActionCreator = (text) => {
     };
 };
 
+export const addMessageActionCreator = () => {
+    return {
+        type: ADD_MESSAGE,
+    }
+};
+
+export const updateNewMessageActionCreator = (text) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        newText: text,
+    }
+};
 
 
 window.store = store;
