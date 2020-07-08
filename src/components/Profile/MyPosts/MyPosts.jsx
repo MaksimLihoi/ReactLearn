@@ -4,10 +4,32 @@ import Post from "./Post/Post";
 
 const MyPosts = (props) => {
 
-
     let postsElements = props.postData
         .map((postElement) =>
-            <Post message={postElement.message} likeCount={postElement.likeCount} id={postElement.id} imageSrc={postElement.imageSrc}/>);
+            <Post message={postElement.message} likeCount={postElement.likeCount} id={postElement.id}
+                  imageSrc={postElement.imageSrc}/>);
+
+    let newPostRef = React.createRef();
+
+    let newPostButton = () => {
+        //props.addPost();
+        let action = {
+            type: 'ADD-POST',
+        };
+
+        props.dispatch(action);
+    };
+
+    let onChangePost = () => {
+        let text = newPostRef.current.value;
+        /*props.updateNewPostText(text);*/
+        let action = {
+          type: 'UPDATE-NEW-POST-TEXT',
+          newText: text,
+        };
+
+        props.dispatch(action);
+    };
 
     return (<div className={classes.postsBlock}>
         My posts
@@ -15,10 +37,10 @@ const MyPosts = (props) => {
             <h3>New Post</h3>
             <div>
                 <div>
-                    <textarea></textarea>
+                    <textarea onChange={onChangePost} ref={newPostRef} value={props.newPostText}></textarea>
                 </div>
                 <div>
-                    <button>Add post</button>
+                    <button onClick={newPostButton}>Add post</button>
                 </div>
             </div>
         </div>
