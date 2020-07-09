@@ -1,7 +1,7 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
+import sidebarReducer from "./sidebarReducer";
+
 
 let store = {
     _state: {
@@ -75,24 +75,6 @@ let store = {
         return this._state;
     },
 
-    /* addPost() {
-         let newPost = {
-             message: this._state.profilePage.newPostText,
-             likeCount: 0,
-             id: this._state.profilePage.postData.length + 1,
-             imageSrc: "https://coubsecure-s.akamaihd.net/get/b29/p/coub/simple/cw_timeline_pic/ff250951a35/edc3593d938e1668ef229/med_1453411023_image.jpg",
-         };
-         this._state.profilePage.postData.push(newPost);
-         this._state.profilePage.newPostText = '';
-         this._renderApp(this._state);
-     },*/
-
-    /*
-        updateNewPostText(newText) {
-            this._state.profilePage.newPostText = newText;
-            this._renderApp(this._state);
-        },
-    */
 
     subscribe(observer) {
         this._renderApp = observer;
@@ -104,75 +86,13 @@ let store = {
 
     dispatch(action) {
         //in future this functions will be implemented outside the dispatch
-        if (action.type === ADD_POST) {
-            let newPost = {
-                message: this._state.profilePage.newPostText,
-                likeCount: 0,
-                id: this._state.profilePage.postData.length + 1,
-                imageSrc: "https://coubsecure-s.akamaihd.net/get/b29/p/coub/simple/cw_timeline_pic/ff250951a35/edc3593d938e1668ef229/med_1453411023_image.jpg",
-            };
-            if (newPost.message === "") {
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.sideBar = sidebarReducer(this._state.sideBar, action);
 
-                alert("Сообщение не должно быть пустым!");
-
-            } else {
-                this._state.profilePage.postData.push(newPost);
-                this._state.profilePage.newPostText = '';
-                this._renderApp(this._state);
-            }
-
-        } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText;
-            this._renderApp(this._state);
-            console.log(this._state.profilePage.newPostText);
-        } else if (action.type === ADD_MESSAGE) {
-            let newMessage = {
-                id: this._state.dialogsPage.messageData.length + 1,
-                text: this._state.dialogsPage.newMessageText,
-            };
-
-            if (newMessage.text === "") {
-
-                alert("Сообщение не должно быть пустым!");
-
-            } else {
-                this._state.dialogsPage.messageData.push(newMessage);
-                this._state.dialogsPage.newMessageText = '';
-                this._renderApp(this._state);
-            }
-
-
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.newText;
-            this._renderApp(this._state);
-            console.log(this._state.dialogsPage.newMessageText);
-        }
+        this._renderApp(this._state);
     },
 
-};
-
-export const addPostActionCreator = () => {
-    return {type: ADD_POST};
-};
-
-export const updateNewPostActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText: text,
-    };
-};
-
-export const addMessageActionCreator = () => {
-    return {
-        type: ADD_MESSAGE,
-    }
-};
-
-export const updateNewMessageActionCreator = (text) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        newText: text,
-    }
 };
 
 
