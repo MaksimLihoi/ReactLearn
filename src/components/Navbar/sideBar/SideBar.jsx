@@ -3,9 +3,8 @@ import classes from "./SideBar.module.css";
 import FriendSide from "./FriendSide/FriendSide";
 
 const SideBar = (props) => {
-
-    let friendArray = props.sideBar.friends
-        .map((friend) =>
+   let friendArray = props.friends
+       .map((friend) =>
             <FriendSide id={friend.id} name={friend.name} imageSrc={friend.imageSrc}/>);
 
     return (

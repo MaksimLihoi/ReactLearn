@@ -1,7 +1,25 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-const profileReducer = (state, action) => {
+let initializeState = {
+    postData: [
+        {
+            message: "Hi, how are u?",
+            likeCount: 10,
+            id: 1,
+            imageSrc: "https://www.prikol.ru/wp-content/gallery/october-2019/prikol-25102019-001.jpg"
+        },
+        {
+            message: "Just second post!",
+            likeCount: 6,
+            id: 2,
+            imageSrc: "https://zefirka.net/wp-content/uploads/2018/05/strannye-foto-na-kotoryx-chto-to-ne-tak-1.jpg"
+        },
+    ],
+    newPostText: "",
+};
+
+const profileReducer = (state = initializeState, action) => {
 
     switch (action.type) {
         case ADD_POST:

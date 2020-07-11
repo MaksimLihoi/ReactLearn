@@ -11,16 +11,12 @@ const Messages = (props) => {
     let newMessageRef = React.createRef();
 
     let addNewMessage = () => {
-        let text = newMessageRef.current.value;
-        let action = addMessageActionCreator();
-        props.dispatch(action);
+        props.addNewMessage();
     };
 
     let onChangeMessage = () => {
         let text = newMessageRef.current.value;
-        let action = updateNewMessageActionCreator(text);
-
-        props.dispatch(action);
+        props.onChangeMessage(text);
     };
 
     return (
