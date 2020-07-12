@@ -1,21 +1,22 @@
 import './index.css';
-import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/reduxStore";
+import StoreContext from "./StoreContext";
 
 
 let renderAppTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} store={store}/>
+                <StoreContext.Provider value={store}>
+                    <App state={state} store={store}/>
+                </StoreContext.Provider>
             </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
+        </React.StrictMode>, document.getElementById('root')
     );
 };
 

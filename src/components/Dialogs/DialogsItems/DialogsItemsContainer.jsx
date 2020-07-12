@@ -1,10 +1,17 @@
 import React from "react";
 import DialogItems from "./DialogsItems";
+import StoreContext from "../../../StoreContext";
 
 
 const DialogItemsContainer  = (props) => {
-    let state = props.store.getState();
-    return (<DialogItems dialogsData={state.dialogsPage.dialogsData}/>);
+    return (
+        <StoreContext.Consumer>
+            {
+                store =>
+                    (<DialogItems dialogsData={store.getState().dialogsPage.dialogsData}/>)
+            }
+        </StoreContext.Consumer>
+        );
 }
 
 export default DialogItemsContainer;
