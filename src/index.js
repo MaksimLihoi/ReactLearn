@@ -5,16 +5,16 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import store from "./redux/reduxStore";
-import StoreContext from "./StoreContext";
+import StoreContext, {Provider} from "./StoreContext";
 
 
 let renderAppTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <StoreContext.Provider value={store}>
+                <Provider store={store}>
                     <App state={state} store={store}/>
-                </StoreContext.Provider>
+                </Provider>
             </BrowserRouter>
         </React.StrictMode>, document.getElementById('root')
     );
