@@ -8,8 +8,8 @@ const Dialogs = (props) => {
 
     return (
         <div className={classes.dialogs}>
-            <DialogItemsConteiner store={props.store}/>
-            <MessagesContainer store={props.store}/>
+            <DialogItemsConteiner />
+            <MessagesContainer />
         </div>
     );
 }
