@@ -5,7 +5,7 @@ import FriendSide from "./FriendSide/FriendSide";
 const SideBar = (props) => {
    let friendArray = props.friends
        .map((friend) =>
-            <FriendSide id={friend.id} name={friend.name} imageSrc={friend.imageSrc}/>);
+            <FriendSide id={friend.id} name={friend.name} imageSrc={friend.imageSrc} key={friend.id}/>);
 
     return (
         <div>

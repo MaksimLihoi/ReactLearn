@@ -34,16 +34,20 @@ const profileReducer = (state = initializeState, action) => {
                 alert("Пост не должно быть пустым!");
 
             } else {
-                let stateCopy = {...state};
-                stateCopy.postData = [...state.postData];
+                let stateCopy = {
+                    ...state,
+                    newPostText: '',
+                    postData: [...state.postData],
+                };
                 stateCopy.postData.push(newPost);
-                stateCopy.newPostText = '';
                 return stateCopy;
             }
 
         case UPDATE_NEW_POST_TEXT:
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
+            let stateCopy = {
+                ...state,
+                newPostText: action.newText,
+            };
             console.log(stateCopy.newPostText);
             return stateCopy;
         default:

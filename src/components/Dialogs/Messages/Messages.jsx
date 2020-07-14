@@ -5,7 +5,7 @@ import classes from "./Messages.module.css";
 const Messages = (props) => {
 
     let messagesElements = props.messageDate
-        .map((messageElement) => <Message text={messageElement.text} id={messageElement.id}/>);
+        .map((messageElement) => <Message text={messageElement.text} key={messageElement.id} id={messageElement.id}/>);
 
     let newMessageRef = React.createRef();
 
