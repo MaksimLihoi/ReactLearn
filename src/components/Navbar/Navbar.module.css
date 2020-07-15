@@ -1,4 +1,3 @@
-
 .nav {
     grid-area: n;
     background-color: #05634b;
@@ -19,3 +18,11 @@
     color: gold;
 }
 
+.findUsers a{
+    text-decoration: none;
+    color: white;
+}
+
+.findUsers a.activeLink {
+   color: gold;
+}

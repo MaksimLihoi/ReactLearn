@@ -7,7 +7,7 @@ import SideBarContainer from "./sideBar/SideBarContainer";
 const Navbar = (props) => {
     return (
         <div className={classes.nav}>
-            <nav >
+            <nav>
                 <div className={classes.item}>
                     <NavLink to="/profile" activeClassName={classes.activeLink}>Profile</NavLink>
                 </div>
@@ -22,6 +22,9 @@ const Navbar = (props) => {
                 </div>
                 <div className={classes.item}>
                     <NavLink to="/settings" activeClassName={classes.activeLink}>Settings</NavLink>
+                </div>
+                <div className={classes.findUsers}>
+                    <NavLink to="/users" activeClassName={classes.activeLink}>Find Users</NavLink>
                 </div>
             </nav>
             <div>

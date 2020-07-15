@@ -1,0 +1,23 @@
+.userImg {
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+}
+
+.user {
+    padding-left: 15px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-color: black;
+    border-style: solid;
+    margin: 5px;
+}
+
+.infArea {
+    border-style: solid;
+    border-color: #05634b;
+}
+
+.location {
+    padding-left: 70%;
+}
