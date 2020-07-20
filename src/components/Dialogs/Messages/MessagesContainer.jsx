@@ -3,14 +3,14 @@ import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../r
 import Messages from "./Messages";
 import {connect} from "react-redux";
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
   return {
       newMessageText: state.dialogsPage.newMessageText,
       messageDate: state.dialogsPage.messageData,
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         addNewMessage: () => {
             dispatch(addMessageActionCreator());

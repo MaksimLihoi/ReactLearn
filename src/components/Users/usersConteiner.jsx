@@ -4,13 +4,13 @@ import Users from "./users";
 import {followActionCreator, setUsersActionCreator, unfollowActionCreator} from "../../redux/usersReducer";
 
 
-let mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
     };
 };
 
-let mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         followUser: (userId) => {
             dispatch(followActionCreator(userId));

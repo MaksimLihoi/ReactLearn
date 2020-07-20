@@ -1,9 +1,15 @@
 import React from "react";
 import classes from "./users.module.css";
+import * as axios from "axios";
+import userAvatar from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg"
 
 let Users = (props) => {
     if(props.users.length == 0){
-        props.setUsers([
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+            props.setUsers(response.data.items);
+        });
+
+       /* props.setUsers([
             {
                 fullName: "Maksim Likhovets",
                 location: {country: "Belarus", city: "Minsk",},
@@ -28,7 +34,8 @@ let Users = (props) => {
                 status: "Jahgo team!",
                 followed: false
             },
-        ])
+        ])*/
+
     }
 
     return (
@@ -39,7 +46,7 @@ let Users = (props) => {
                     <div key={user.id} className={classes.user}>
                 <span>
                     <div>
-                        <img src={user.imageSrc} className={classes.userImg}/>
+                        <img src={user.photos.small == null ? userAvatar : user.photos.small} className={classes.userImg}/>
                     </div>
                     <div>
                         {user.followed ? <button onClick={() => props.unfollowUser(user.id)}>Follow</button> :
@@ -49,10 +56,10 @@ let Users = (props) => {
                 <span>
                     <div className={classes.infArea}>
                         <div>
-                            {user.fullName}
+                            {user.name}
                             <span className={classes.location}>
-                                {user.location.country},
-                                {user.location.city}
+                                {"user.location.country"},
+                                {"user.location.city"}
                             </span>
                         </div>
                         <div>{user.status}</div>

@@ -46,14 +46,11 @@ const dialogsReducer = (state = initializeState, action) => {
                 alert("Сообщение не должно быть пустым!");
 
             } else {
-                let stateCopy = {
+                return {
                     ...state,
                     newMessageText:  '',
-                    messageData: [...state.messageData],
+                    messageData: [...state.messageData, newMessage],
                 };
-                stateCopy.messageData.push(newMessage);
-
-                return stateCopy;
             }
 
         case UPDATE_NEW_MESSAGE_TEXT:
