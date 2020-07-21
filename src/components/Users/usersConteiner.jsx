@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         },
     };
 };
+debugger;
 
 const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
 
