@@ -21,3 +21,7 @@
 .location {
     padding-left: 70%;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
