@@ -8,8 +8,8 @@ const CURRENT_PAGE = "CURRENT-PAGE";
 
 let initializeState = {
     users: [],
-    currentPage: 200,
-    pageSize: 5,
+    currentPage: 1,
+    pageSize: 20,
     totalUsersCount: 0,
 };
 
