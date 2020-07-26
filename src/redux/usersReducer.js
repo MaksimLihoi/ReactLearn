@@ -4,6 +4,7 @@ const SET_USERS = "SET-USERS";
 const TOTAL_USERS_COUNT = "TOTAL-USERS-COUNT";
 const PAGE_SIZE = "PAGE-SIZE";
 const CURRENT_PAGE = "CURRENT-PAGE";
+const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
 
 
 let initializeState = {
@@ -11,6 +12,7 @@ let initializeState = {
     currentPage: 1,
     pageSize: 20,
     totalUsersCount: 0,
+    isFetching: false,
 };
 
 
@@ -58,7 +60,11 @@ const usersReducer = (state = initializeState, action) => {
 
         case CURRENT_PAGE: {
             return {...state, currentPage: action.currentPage}
-        }
+        };
+
+        case TOGGLE_IS_FETCHING: {
+          return {...state, isFetching: action.isFetching}
+        };
 
         default:
             return state;
@@ -93,18 +99,18 @@ export const totalUsersCountActionCreator = (totalUserCount) => {
     };
 };
 
-export const pageSizeActionCreator = (pageSize) => {
-    return {
-        type: PAGE_SIZE,
-        pageSize: pageSize,
-    };
-};
-
 export const setCurrentPageActionCreator = (currentPage) => {
   return {
       type: CURRENT_PAGE,
       currentPage: currentPage,
   }
+};
+
+export const toggleIsFetchingActionCreator = (isFetching) => {
+    return {
+      type: TOGGLE_IS_FETCHING,
+        isFetching: isFetching,
+    };
 };
 
 

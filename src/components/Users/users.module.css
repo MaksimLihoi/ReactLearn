@@ -25,3 +25,8 @@
 .selectedPage {
     font-weight: bold;
 }
+
+.loader {
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import classes from "./users.module.css";
 import userAvatar
     from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg";
+import Loader from "../common/loader/Loader";
 
 const Users = (props) => {
 
@@ -13,7 +14,6 @@ const Users = (props) => {
 
     return (
         <div>
-
             <h2>Users</h2>
 
             {pages.map(p => {
