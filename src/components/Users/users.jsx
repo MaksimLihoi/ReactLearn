@@ -27,7 +27,7 @@ const Users = (props) => {
                         <div key={user.id} className={classes.user}>
                 <span>
                     <div>
-                        <NavLink to={"/profile/" + props.userId}>
+                        <NavLink to={"/profile/" + user.id}>
                         <img src={user.photos.small == null ? userAvatar : user.photos.small}
                              className={classes.userImg}/>
                         </NavLink>

@@ -2,6 +2,7 @@ import React from "react";
 import classes from './ProfileInfo.module.css';
 import Loader from "../../common/loader/Loader";
 import Contact from "../Contact/Contact";
+import noAvaImage from "../../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg"
 
 const ProfileInfo = (props) => {
 
@@ -32,7 +33,7 @@ const ProfileInfo = (props) => {
                 <img className={classes.img} src='https://freehtmlthemes.ru/assets/images/articles/css-fon.jpg'/>
             </div>
             <div className={classes.descriptionBlock}>
-                <img className={classes.imgAva} src={props.profile.photos.small}/>
+                <img className={classes.imgAva} src={props.profile.photos.small ? props.profile.photos.small : noAvaImage}/>
                 <div className={classes.fullName}>{props.profile.fullName}</div>
                 <span className={classes.lookingForAJobDescription}>{props.profile.lookingForAJobDescription}</span>
                 <div>

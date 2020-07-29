@@ -9,7 +9,7 @@ import {
 import * as axios from "axios";
 import Loader from "../common/loader/Loader";
 import classes from './users.module.css';
-import {NavLink} from "react-router-dom";
+
 
 
 class UsersClass extends React.Component {
@@ -38,13 +38,14 @@ class UsersClass extends React.Component {
 
                 {this.props.isFetching ? <Loader className={classes.loader}/> :
 
-                       <Users currentPage={this.props.currentPage}
-                              onPageChanged={this.onPageChanged}
-                              users={this.props.users}
-                              totalUsersCount={this.props.totalUsersCount}
-                              pageSize={this.props.pageSize}
-                              unfollowUser={this.props.unfollowUser}
-                              followUser={this.props.followUser}/>}
+                    <Users currentPage={this.props.currentPage}
+                           onPageChanged={this.onPageChanged}
+                           users={this.props.users}
+                           totalUsersCount={this.props.totalUsersCount}
+                           pageSize={this.props.pageSize}
+                           unfollowUser={this.props.unfollowUser}
+                           followUser={this.props.followUser}
+                           userId={this.props.userId}/>}
 
             </>
         );
