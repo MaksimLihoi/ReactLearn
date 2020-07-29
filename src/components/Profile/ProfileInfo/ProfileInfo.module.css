@@ -22,3 +22,12 @@
     font-weight: bold;
     font-family: "Arial Narrow";
 }
+
+.imgJobSearch {
+    width: 70px;
+    height: 70px;
+}
+
+.socialNetworkUrls {
+    border-style: solid;
+}
