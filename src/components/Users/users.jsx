@@ -3,6 +3,7 @@ import classes from "./users.module.css";
 import userAvatar
     from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg";
 import Loader from "../common/loader/Loader";
+import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
 
@@ -26,8 +27,10 @@ const Users = (props) => {
                         <div key={user.id} className={classes.user}>
                 <span>
                     <div>
+                        <NavLink to={"/profile/" + props.userId}>
                         <img src={user.photos.small == null ? userAvatar : user.photos.small}
                              className={classes.userImg}/>
+                        </NavLink>
                     </div>
                     <div>
                         {user.followed ? <button onClick={() => props.unfollowUser(user.id)}>Follow</button> :

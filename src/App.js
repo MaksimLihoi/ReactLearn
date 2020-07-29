@@ -10,6 +10,7 @@ import Settings from "./components/Settings/Settings";
 import {Route} from "react-router-dom";
 import Users from "./components/Users/users";
 import UsersContainer from "./components/Users/usersConteiner";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -20,7 +21,7 @@ const App = (props) => {
             <div className='app-wrapper-content'>
                 <Route path="/dialogs"
                        render={() => <Dialogs />}/>
-                <Route path="/profile" render={() => <Profile />}/>
+                <Route path="/profile" render={() => <ProfileContainer />}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>

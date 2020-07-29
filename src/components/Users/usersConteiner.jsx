@@ -9,6 +9,7 @@ import {
 import * as axios from "axios";
 import Loader from "../common/loader/Loader";
 import classes from './users.module.css';
+import {NavLink} from "react-router-dom";
 
 
 class UsersClass extends React.Component {
@@ -34,14 +35,16 @@ class UsersClass extends React.Component {
     render() {
         return (
             <>
+
                 {this.props.isFetching ? <Loader className={classes.loader}/> :
-                    <Users currentPage={this.props.currentPage}
-                           onPageChanged={this.onPageChanged}
-                           users={this.props.users}
-                           totalUsersCount={this.props.totalUsersCount}
-                           pageSize={this.props.pageSize}
-                           unfollowUser={this.props.unfollowUser}
-                           followUser={this.props.followUser}/>}
+
+                       <Users currentPage={this.props.currentPage}
+                              onPageChanged={this.onPageChanged}
+                              users={this.props.users}
+                              totalUsersCount={this.props.totalUsersCount}
+                              pageSize={this.props.pageSize}
+                              unfollowUser={this.props.unfollowUser}
+                              followUser={this.props.followUser}/>}
 
             </>
         );
@@ -58,7 +61,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
+/*const mapDispatchToProps = (dispatch) => {
     return {
         followUser: (userId) => {
             dispatch(followActionCreator(userId));
@@ -79,8 +82,15 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(toggleIsFetchingActionCreator(isFetching));
         },
     };
-};
+};*/
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClass);
+const UsersContainer = connect(mapStateToProps, {
+    followUser: followActionCreator,
+    unfollowUser: unfollowActionCreator,
+    setUsers: setUsersActionCreator,
+    setCurrentPage: setCurrentPageActionCreator,
+    getTotalUsersCount: totalUsersCountActionCreator,
+    toggleIsFetching: toggleIsFetchingActionCreator,
+})(UsersClass);
 
 export default UsersContainer;

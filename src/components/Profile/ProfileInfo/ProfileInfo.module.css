@@ -6,3 +6,19 @@
 .descriptionBlock {
     padding: 10px;
 }
+
+.imgAva {
+    width: 100px;
+    height: 100px;
+    border-radius: 60px;
+}
+
+.fullName {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.lookingForAJobDescription {
+    font-weight: bold;
+    font-family: "Arial Narrow";
+}

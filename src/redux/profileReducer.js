@@ -1,5 +1,6 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET-USER-PROFILE";
 
 let initializeState = {
     postData: [
@@ -16,6 +17,7 @@ let initializeState = {
             imageSrc: "https://zefirka.net/wp-content/uploads/2018/05/strannye-foto-na-kotoryx-chto-to-ne-tak-1.jpg"
         },
     ],
+    profile: null,
     newPostText: "",
 };
 
@@ -48,6 +50,9 @@ const profileReducer = (state = initializeState, action) => {
             };
             console.log(stateCopy.newPostText);
             return stateCopy;
+
+        case SET_USER_PROFILE:
+            return {...state, profile: action.profile};
         default:
             return state;
     }
@@ -63,6 +68,13 @@ export const updateNewPostActionCreator = (text) => {
         type: UPDATE_NEW_POST_TEXT,
         newText: text,
     };
+};
+
+export const setUserProfileActionCreator = (profile) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile: profile,
+  };
 };
 
 export default profileReducer;
