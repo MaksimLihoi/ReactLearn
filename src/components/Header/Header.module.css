@@ -7,3 +7,24 @@
 .header img {
     width: 40px;
 }
+
+.loginBlock {
+    float: right;
+    padding-right: 30px;
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
+}
+
+.loader {
+
+}
+
+.profilePhoto {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    padding-top: 5px;
+}
