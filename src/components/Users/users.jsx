@@ -4,6 +4,7 @@ import userAvatar
     from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg";
 import Loader from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios";
 
 const Users = (props) => {
 
@@ -33,10 +34,41 @@ const Users = (props) => {
                         </NavLink>
                     </div>
                     <div>
-                        {user.followed ? <button onClick={() => props.unfollowUser(user.id)}>Follow</button> :
+                        { props.isFetching ? <Loader/> :
+                            user.followed ? <button onClick={() => {
+                                props.toggleIsFetching(true);
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                    {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "60563a6d-a692-43ac-9bf8-edc61d4b8f09",
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollowUser(user.id)
+                                        }
+                                        props.toggleIsFetching(false);
+                                    });
+                            }}>Unfollow</button> :
                             <button onClick={() => {
-                                props.followUser(user.id)
-                            }}>Unfollow</button>}
+                                props.toggleIsFetching(true);
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                    null,
+                                    {
+                                        withCredentials: true,
+                                        headers: {
+                                            "API-KEY": "60563a6d-a692-43ac-9bf8-edc61d4b8f09",
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.followUser(user.id)
+                                        }
+                                        props.toggleIsFetching(false);
+                                    });
+
+                            }}>Follow</button>}
                     </div>
                 </span>
                             <span>

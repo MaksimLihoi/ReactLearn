@@ -16,7 +16,8 @@ class UsersClass extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {withCredentials: true}).then(response => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(response.data.items);
             this.props.getTotalUsersCount(response.data.totalCount);
@@ -26,7 +27,8 @@ class UsersClass extends React.Component {
     onPageChanged = (pageNum) => {
         this.props.setCurrentPage(pageNum);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.pageSize}`,
+            {withCredentials: true}).then(response => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(response.data.items);
         });
@@ -36,7 +38,7 @@ class UsersClass extends React.Component {
         return (
             <>
 
-                {this.props.isFetching ? <Loader className={classes.loader}/> :
+                {this.props.isFetching ? <Loader/> :
 
                     <Users currentPage={this.props.currentPage}
                            onPageChanged={this.onPageChanged}
@@ -45,7 +47,9 @@ class UsersClass extends React.Component {
                            pageSize={this.props.pageSize}
                            unfollowUser={this.props.unfollowUser}
                            followUser={this.props.followUser}
-                           userId={this.props.userId}/>}
+                           userId={this.props.userId}
+                           isFetching={this.props.isFetching}
+                           toggleIsFetching={this.props.toggleIsFetching}/>}
 
             </>
         );
