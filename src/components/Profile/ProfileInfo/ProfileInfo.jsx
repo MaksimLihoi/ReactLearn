@@ -24,6 +24,7 @@ const ProfileInfo = (props) => {
         return socialNetworksArray;
     };
 
+
     return (
         <div className={classes.content}>
             <div>
@@ -39,7 +40,7 @@ const ProfileInfo = (props) => {
                     {props.profile.lookingForAJob ? "I'm looking for a job" : "I'm not looking for a job"}
                 </div>
                 <div className={contactComponetRender(socialNetworkUrls).length == 0 ? null : classes.socialNetworkUrls}>
-                    {contactComponetRender(socialNetworkUrls)}
+                    {socialNetworksArray}
                 </div>
             </div>
 
