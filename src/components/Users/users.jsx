@@ -5,6 +5,7 @@ import userAvatar
 import Loader from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
 import * as axios from "axios";
+import {followAPI, usersAPI} from "../API/api";
 
 const Users = (props) => {
 
@@ -37,15 +38,9 @@ const Users = (props) => {
                         { props.isFetching ? <Loader/> :
                             user.followed ? <button onClick={() => {
                                 props.toggleIsFetching(true);
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                    {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "60563a6d-a692-43ac-9bf8-edc61d4b8f09",
-                                        }
-                                    })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
+                                followAPI.unfollowUser(user.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0) {
                                             props.unfollowUser(user.id)
                                         }
                                         props.toggleIsFetching(false);
@@ -53,16 +48,9 @@ const Users = (props) => {
                             }}>Unfollow</button> :
                             <button onClick={() => {
                                 props.toggleIsFetching(true);
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                    null,
-                                    {
-                                        withCredentials: true,
-                                        headers: {
-                                            "API-KEY": "60563a6d-a692-43ac-9bf8-edc61d4b8f09",
-                                        }
-                                    })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
+                                followAPI.followUser(user.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0) {
                                             props.followUser(user.id)
                                         }
                                         props.toggleIsFetching(false);

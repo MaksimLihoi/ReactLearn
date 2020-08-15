@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {setUserProfileActionCreator} from "../../redux/profileReducer";
 import withRouter from "react-router-dom/es/withRouter";
+import {profileAPI} from "../API/api";
 
 class ProfileClass extends React.Component {
 
@@ -15,8 +16,8 @@ class ProfileClass extends React.Component {
             userId = 2;
         }
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId).then(response => {
-            this.props.setUserProfile(response.data);
+        profileAPI.getProfile(userId).then(data => {
+            this.props.setUserProfile(data);
         });
     };
 
