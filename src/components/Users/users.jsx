@@ -36,24 +36,26 @@ const Users = (props) => {
                     </div>
                     <div>
                         { props.isFetching ? <Loader/> :
-                            user.followed ? <button onClick={() => {
-                                props.toggleIsFetching(true);
+                            user.followed ?
+                                <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, user.id);
+
                                 followAPI.unfollowUser(user.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.unfollowUser(user.id)
                                         }
-                                        props.toggleIsFetching(false);
+                                        props.toggleFollowingProgress(false, user.id);
                                     });
                             }}>Unfollow</button> :
-                            <button onClick={() => {
-                                props.toggleIsFetching(true);
+                            <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
+                                props.toggleFollowingProgress(true, user.id);
                                 followAPI.followUser(user.id)
                                     .then(data => {
                                         if (data.resultCode === 0) {
                                             props.followUser(user.id)
                                         }
-                                        props.toggleIsFetching(false);
+                                        props.toggleFollowingProgress(false, user.id);
                                     });
 
                             }}>Follow</button>}

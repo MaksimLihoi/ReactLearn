@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import * as axios from "axios";
 import {connect} from "react-redux";
 import {
     toggleIsFetchingActionCreator,
@@ -9,13 +8,14 @@ import {
 } from "../../redux/authReducer";
 import Loader from "../common/loader/Loader";
 import classes from './Header.module.css';
+import {authAPI, profileAPI} from "../API/api";
 
 class HeaderClass extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data;
+        authAPI.authMe().then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data;
                 this.props.setUserData(id, email, login);
                 this.setProfilePhoto(id);
             };
@@ -24,9 +24,9 @@ class HeaderClass extends React.Component {
     };
 
     setProfilePhoto = (userId) => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setUserPhoto(response.data.photos.small);
+        profileAPI.getProfile(userId)
+            .then(data => {
+                this.props.setUserPhoto(data.photos.small);
             });
     };
 
