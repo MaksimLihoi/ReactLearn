@@ -4,8 +4,7 @@ import userAvatar
     from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg";
 import Loader from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
-import * as axios from "axios";
-import {followAPI, usersAPI} from "../API/api";
+import {followAPI} from "../API/api";
 
 const Users = (props) => {
 
@@ -38,27 +37,11 @@ const Users = (props) => {
                         { props.isFetching ? <Loader/> :
                             user.followed ?
                                 <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, user.id);
-
-                                followAPI.unfollowUser(user.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.unfollowUser(user.id)
-                                        }
-                                        props.toggleFollowingProgress(false, user.id);
-                                    });
-                            }}>Unfollow</button> :
+                                    props.unfollowUser(user.id);
+                                }}>Unfollow</button> :
                             <button disabled={props.followingProgress.some(id => id === user.id)} onClick={() => {
-                                props.toggleFollowingProgress(true, user.id);
-                                followAPI.followUser(user.id)
-                                    .then(data => {
-                                        if (data.resultCode === 0) {
-                                            props.followUser(user.id)
-                                        }
-                                        props.toggleFollowingProgress(false, user.id);
-                                    });
-
-                            }}>Follow</button>}
+                                    props.followUser(user.id);
+                                }}>Follow</button>}
                     </div>
                 </span>
                             <span>

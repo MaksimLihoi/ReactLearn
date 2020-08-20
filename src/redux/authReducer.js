@@ -1,3 +1,5 @@
+import {authAPI, profileAPI} from "../components/API/api";
+
 const SET_USER_DATA = "SET-USER-DATA";
 const SET_USER_PHOTO = "SET-USER-PHOTO";
 const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING";
@@ -54,6 +56,20 @@ export const toggleIsFetchingActionCreator = (isFetching) => {
         isFetching: isFetching,
     };
 };
+export const authThunkCreator = (userId) => {
 
+    return (dispatch) => {
+        authAPI.authMe().then(data => {
+            if (data.resultCode === 0) {
+                let {id, email, login} = data.data;
+                dispatch(setUserDataActionCreator(id, email, login));
+                profileAPI.getProfile(id)
+                    .then(data => {
+                        dispatch(setUserPhotoActionCreator(data.photos.small));
+                    });
+            };
+        });
+    };
+};
 
 export default authReducer;
