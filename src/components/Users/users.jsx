@@ -4,7 +4,7 @@ import userAvatar
     from "../../assets/images/social-media-avatar-social-network-computer-icons-communication-social-media.jpg";
 import Loader from "../common/loader/Loader";
 import {NavLink} from "react-router-dom";
-import {followAPI} from "../API/api";
+
 
 const Users = (props) => {
 

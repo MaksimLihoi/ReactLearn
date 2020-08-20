@@ -24,6 +24,7 @@ class ProfileClass extends React.Component {
 
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
+    isAuth: state.authPage.isAuth,
 });
 
 let WithTheRouterProfileComponent = withRouter(ProfileClass);

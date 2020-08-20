@@ -1,6 +1,7 @@
 import React from "react";
 import Message from "./Message/Message";
 import classes from "./Messages.module.css";
+import Redirect from "react-router-dom/es/Redirect";
 
 const Messages = (props) => {
 
@@ -17,6 +18,11 @@ const Messages = (props) => {
         let text = newMessageRef.current.value;
         props.onChangeMessage(text);
     };
+
+    if (!props.isAuth) {
+        debugger;
+        return (<Redirect to={"/login"}/>);
+    }
 
     return (
         <div className={classes.messages}>
