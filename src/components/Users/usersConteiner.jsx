@@ -12,6 +12,7 @@ import {
     unfollowThunkCreator
 } from "../../redux/usersReducer";
 import Loader from "../common/loader/Loader";
+import {withAuthComponent} from "../Hoc/HightOrderComponent";
 
 
 
@@ -48,6 +49,8 @@ class UsersClass extends React.Component {
     };
 };
 
+let AuthRedirectedComponent = withAuthComponent(UsersClass);
+
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -82,6 +85,8 @@ const mapStateToProps = (state) => {
     };
 };*/
 
+
+
 const UsersContainer = connect(mapStateToProps, {
     followUser: followThunkCreator,
     unfollowUser: unfollowThunkCreator,
@@ -91,6 +96,6 @@ const UsersContainer = connect(mapStateToProps, {
     toggleIsFetching: toggleIsFetchingActionCreator,
     toggleFollowingProgress: toggleFollowingProgressActionCreator,
     getUsers: getUsersThunkCreator,
-})(UsersClass);
+})(AuthRedirectedComponent);
 
 export default UsersContainer;

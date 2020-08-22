@@ -20,7 +20,6 @@ const Messages = (props) => {
     };
 
     if (!props.isAuth) {
-        debugger;
         return (<Redirect to={"/login"}/>);
     }
 
