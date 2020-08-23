@@ -3,8 +3,9 @@ import {addMessageActionCreator, updateNewMessageActionCreator} from "../../../r
 import Messages from "./Messages";
 import {connect} from "react-redux";
 import {withAuthComponent} from "../../Hoc/HightOrderComponent";
+import {compose} from "redux";
 
-let AuthRedirectedComponent = withAuthComponent(Messages);
+//let AuthRedirectedComponent = withAuthComponent(Messages);
 
 const mapStateToProps = (state) => {
   return {
@@ -13,9 +14,17 @@ const mapStateToProps = (state) => {
   };
 };
 
-const MessagesContainer = connect(mapStateToProps, {
+/*const MessagesContainer = connect(mapStateToProps, {
     addNewMessage: addMessageActionCreator,
     onChangeMessage: updateNewMessageActionCreator,
 })(AuthRedirectedComponent);
 
-export default MessagesContainer;
+export default MessagesContainer;*/
+
+export default compose(
+    connect(mapStateToProps, {
+        addNewMessage: addMessageActionCreator,
+        onChangeMessage: updateNewMessageActionCreator,
+    }),
+    withAuthComponent
+)(Messages);

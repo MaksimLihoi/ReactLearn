@@ -13,6 +13,7 @@ import {
 } from "../../redux/usersReducer";
 import Loader from "../common/loader/Loader";
 import {withAuthComponent} from "../Hoc/HightOrderComponent";
+import {compose} from "redux";
 
 
 
@@ -49,18 +50,7 @@ class UsersClass extends React.Component {
     };
 };
 
-let AuthRedirectedComponent = withAuthComponent(UsersClass);
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingProgress: state.usersPage.followingProgress,
-    };
-};
 
 /*const mapDispatchToProps = (dispatch) => {
     return {
@@ -85,9 +75,9 @@ const mapStateToProps = (state) => {
     };
 };*/
 
+//let AuthRedirectedComponent = withAuthComponent(UsersClass);
 
-
-const UsersContainer = connect(mapStateToProps, {
+/*const UsersContainer = connect(mapStateToProps, {
     followUser: followThunkCreator,
     unfollowUser: unfollowThunkCreator,
     setUsers: setUsersActionCreator,
@@ -96,6 +86,31 @@ const UsersContainer = connect(mapStateToProps, {
     toggleIsFetching: toggleIsFetchingActionCreator,
     toggleFollowingProgress: toggleFollowingProgressActionCreator,
     getUsers: getUsersThunkCreator,
-})(AuthRedirectedComponent);
+})(AuthRedirectedComponent);*/
 
-export default UsersContainer;
+const mapStateToProps = (state) => {
+    return {
+        users: state.usersPage.users,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        pageSize: state.usersPage.pageSize,
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
+        followingProgress: state.usersPage.followingProgress,
+    };
+};
+
+
+export default compose(
+    connect(mapStateToProps, {
+        followUser: followThunkCreator,
+        unfollowUser: unfollowThunkCreator,
+        setUsers: setUsersActionCreator,
+        setCurrentPage: setCurrentPageActionCreator,
+        getTotalUsersCount: totalUsersCountActionCreator,
+        toggleIsFetching: toggleIsFetchingActionCreator,
+        toggleFollowingProgress: toggleFollowingProgressActionCreator,
+        getUsers: getUsersThunkCreator,
+    }),
+    withAuthComponent
+)(UsersClass);
+
