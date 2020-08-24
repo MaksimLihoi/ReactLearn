@@ -1,8 +1,10 @@
-import {profileAPI} from "../components/API/api";
+import {profileAPI, usersAPI} from "../components/API/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_STATUS = "SET-STATUS";
+
 
 let initializeState = {
     postData: [
@@ -21,6 +23,7 @@ let initializeState = {
     ],
     profile: null,
     newPostText: "",
+    status: "",
 };
 
 const profileReducer = (state = initializeState, action) => {
@@ -78,6 +81,12 @@ export const setUserProfileActionCreator = (profile) => {
     profile: profile,
   };
 };
+export const setUserStatusActionCreator = (status) => {
+  return {
+    type: SET_STATUS,
+    status: status,
+  };
+};
 
 export const setUserProfileThunkCreator = (userId) => {
     return (dispatch) => {
@@ -85,6 +94,14 @@ export const setUserProfileThunkCreator = (userId) => {
             dispatch(setUserProfileActionCreator(data));
         });
     };
+};
+
+export const setUserStatusThunkCreator = (usersId) => {
+  return (dispatch) => {
+    profileAPI.getStatus(usersId).then(data => {
+        dispatch(setUserStatusActionCreator(data.status))
+    });
+  };
 };
 
 export default profileReducer;
